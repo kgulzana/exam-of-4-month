@@ -1,0 +1,36 @@
+body {
+  font-family: Nunito;
+  background: #5f81b2;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.header__logo {
+  font-size: 60px;
+  font-weight: 900;
+  color: white;
+  margin-top: 54px;
+}
+
+button.btn-new-task {
+  width: 287px;
+  height: 40px;
+  background-color: #f5d57f;
+  margin-top: 79px;
+}
+/* MODAL */
+
+.modal-header {
+  border-bottom: none;
+}
+
+.form-field.col-12 {
+  margin-bottom: 11px;
+}
+
+.btn-secondary {
+  width: 457px;
+  margin: 6px;
+}
