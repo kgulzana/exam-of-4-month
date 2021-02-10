@@ -20,6 +20,14 @@ button.btn-new-task {
   background-color: #f5d57f;
   margin-top: 79px;
 }
+
+h3.row__list {
+  font-size: 22px;
+  color: white;
+  font-weight: 900;
+  font-family: "Nunito";
+  margin-top: 86px;
+}
 /* MODAL */
 
 .modal-header {
@@ -33,4 +41,19 @@ button.btn-new-task {
 .btn-secondary {
   width: 457px;
   margin: 6px;
+}
+
+#tasks {
+  margin-top: 20px;
+}
+
+#tasks .box.col-6 {
+  background-color: white;
+  height: 130px;
+}
+
+#tasks .box + .box {
+  margin-top: 20px;
+  padding-right: 10px;
+  background-image: url();
 }

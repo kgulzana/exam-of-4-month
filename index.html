@@ -16,6 +16,12 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -51,7 +57,6 @@
                       <h5 class="modal-title" id="exampleModalLabel">
                         Создать задачу
                       </h5>
-
                       <button
                         type="button"
                         class="btn-close"
@@ -61,14 +66,23 @@
                     </div>
                     <div class="modal-body">
                       <div class="form-field col-12">
+                        <label for="title"></label>
                         <input
                           type="text"
+                          name="title"
                           class="form-control"
+                          id="title"
                           placeholder="Заголовок задачи"
                         />
                       </div>
                       <div class="form-field col-12">
-                        <textarea class="form-control"></textarea>
+                        Описание
+                        <label for="task"></label>
+                        <textarea
+                          class="form-control"
+                          name="task"
+                          id="task"
+                        ></textarea>
                       </div>
                       <form>
                         <div class="row">
@@ -84,6 +98,7 @@
                             <button
                               class="btn btn-block btn-secondary"
                               type="submit"
+                              id="cancel"
                             >
                               Отмена
                             </button>
@@ -98,6 +113,20 @@
           </div>
         </div>
       </header>
+      <div class="row" id="tasks">
+        <div class="task__top-section">
+          <h1 class="task__title">Заголовок задачи</h1>
+          <input class="task__change-input" type="checkbox" />
+          <p class="task__description"></p>
+        </div>
+
+        <div class="task__bottom-section">
+          <span class="task__edit"></span>
+          <i class="fas fa-pencil-alt"></i>
+          <span class="task__delete"></span>
+          <i class="fas fa-trash-alt"></i>
+        </div>
+      </div>
     </div>
 
     <script
@@ -107,5 +136,41 @@
     ></script>
     <script src="js/main.js"></script>
     <script src="js/utils.js"></script>
+    <script>
+      const modalTask = document.querySelector(".modal-dialog");
+      const taskDiv = document.querySelector("#tasks");
+      const modalClose = document.querySelector(".btn-close");
+      const modalCancel = document.querySelector("#cancel");
+
+      modalTask.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const _title = modalTask.querySelector("[name=title]").value;
+        const _listTasks = modalTask.querySelector("[name=task]").value;
+
+        let $task = document.createElement("div");
+        $task.classList.add("box");
+        $task.classList.add("col-6");
+
+        $task.innerHTML = `<h3>${_title}</h3>
+                            <p>${_listTasks}</p>`;
+
+        taskDiv.prepend($task);
+      });
+
+      modalClose.onClick = function () {
+        modalTask.style.display = "none";
+      };
+
+      window.onClick = function () {
+        if (event.target == modalTask) {
+          modalTask.style.display;
+        }
+      };
+
+      modalCancel.onClick = function () {
+        modalTask.style.display = "none";
+      };
+    </script>
   </body>
 </html>
