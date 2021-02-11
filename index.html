@@ -31,7 +31,7 @@
           <div class="col-6">
             <div class="header__logo">
               TODOLIST
-              <h4>BY NAME SURNAME</h4>
+              <h4 class="header__subtitle">BY NAME SURNAME</h4>
             </div>
           </div>
           <div class="col-6">
@@ -90,6 +90,7 @@
                             <button
                               class="btn btn-block btn-secondary"
                               type="submit"
+                              id="btn-save"
                             >
                               Сохранить
                             </button>
@@ -114,18 +115,7 @@
         </div>
       </header>
       <div class="row" id="tasks">
-        <div class="task__top-section">
-          <h1 class="task__title">Заголовок задачи</h1>
-          <input class="task__change-input" type="checkbox" />
-          <p class="task__description"></p>
-        </div>
-
-        <div class="task__bottom-section">
-          <span class="task__edit"></span>
-          <i class="fas fa-pencil-alt"></i>
-          <span class="task__delete"></span>
-          <i class="fas fa-trash-alt"></i>
-        </div>
+        <h3 class="listtask">СПИСОК ЗАДАЧ</h3>
       </div>
     </div>
 
@@ -138,6 +128,7 @@
     <script src="js/utils.js"></script>
     <script>
       const modalTask = document.querySelector(".modal-dialog");
+      const modal = document.querySelector("#modaltask");
       const taskDiv = document.querySelector("#tasks");
       const modalClose = document.querySelector(".btn-close");
       const modalCancel = document.querySelector("#cancel");
@@ -145,32 +136,44 @@
       modalTask.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const _title = modalTask.querySelector("[name=title]").value;
+        const _title = modalTask.querySelector("[name=title]");
         const _listTasks = modalTask.querySelector("[name=task]").value;
 
         let $task = document.createElement("div");
         $task.classList.add("box");
         $task.classList.add("col-6");
 
-        $task.innerHTML = `<h3>${_title}</h3>
-                            <p>${_listTasks}</p>`;
+        $task.innerHTML = ` <h3 class = "titletask">${_title.value}</h3>
+                            <p>${_listTasks}</p>
+                            <input class = "check-done" type="checkbox"/>
+                            <a class="delete-img" href="#">
+                            <img src="images/trash.svg" alt="delete"/>`;
+
+        let $checkBox = $task.querySelector(".check-done");
+        let $titleTask = $task.querySelector(".titletask");
+        let $delBtn = $task.querySelector(".delete-img");
 
         taskDiv.prepend($task);
+
+        $checkBox.addEventListener("click", () => {
+          console.log("check");
+          $titleTask.style.textDecoration = "line-through";
+          if ($checkBox.checked === true) {
+            $titleTask.style.textDecoration = "line-through";
+          } else {
+            $checkBox.style.textDecoration = "none";
+          }
+        });
+
+        $delBtn.addEventListener("click", () => {
+          $task.remove();
+        });
       });
 
-      modalClose.onClick = function () {
-        modalTask.style.display = "none";
-      };
-
-      window.onClick = function () {
-        if (event.target == modalTask) {
-          modalTask.style.display;
-        }
-      };
-
-      modalCancel.onClick = function () {
-        modalTask.style.display = "none";
-      };
+      modalCancel.addEventListener("click", () => {
+        modal.classList.remove("show");
+        modal.style.display = "none";
+      });
     </script>
   </body>
 </html>
