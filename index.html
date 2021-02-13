@@ -23,18 +23,19 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
   </head>
   <body>
     <div class="container">
       <header class="header">
         <div class="row header__title">
-          <div class="col-6">
+          <div class="col-sm-12 col-xl-6">
             <div class="header__logo">
               TODOLIST
               <h4 class="header__subtitle">BY NAME SURNAME</h4>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-sm-12 col-xl-6">
             <div class="header__btn">
               <button
                 type="button"
@@ -114,9 +115,8 @@
           </div>
         </div>
       </header>
-      <div class="row" id="tasks">
-        <h3 class="listtask">СПИСОК ЗАДАЧ</h3>
-      </div>
+      <h3 class="listtask">СПИСОК ЗАДАЧ</h3>
+      <div class="taskitems" id="tasks"></div>
     </div>
 
     <script
@@ -139,9 +139,14 @@
         const _title = modalTask.querySelector("[name=title]");
         const _listTasks = modalTask.querySelector("[name=task]").value;
 
+        if (_title.value === "") {
+          alert("Заполнить заголовок!");
+          return;
+        }
+
         let $task = document.createElement("div");
         $task.classList.add("box");
-        $task.classList.add("col-6");
+        // $task.classList.add("col");
 
         $task.innerHTML = ` <h3 class = "titletask">${_title.value}</h3>
                             <p>${_listTasks}</p>
@@ -155,8 +160,11 @@
 
         taskDiv.prepend($task);
 
+        $delBtn.addEventListener("click", () => {});
+
         $checkBox.addEventListener("click", () => {
           console.log("check");
+
           $titleTask.style.textDecoration = "line-through";
           if ($checkBox.checked === true) {
             $titleTask.style.textDecoration = "line-through";

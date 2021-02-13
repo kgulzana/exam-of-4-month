@@ -1,0 +1,29 @@
+@media (max-width: 576px) {
+  .header__logo {
+    width: -67px;
+    font-size: 39px;
+    margin-left: 20px;
+  }
+
+  h4.header__subtitle {
+    font-size: 18px;
+    font-weight: 900;
+    margin-top: 2px;
+  }
+
+  button.btn-new-task {
+    margin-left: 18px;
+    margin-top: 13px;
+  }
+
+  h3.listtask {
+    margin-top: 34px;
+    margin-left: 18px;
+    font-size: 17px;
+    font-weight: 900;
+  }
+
+  btn btn-block btn-secondary {
+    width: 20px;
+  }
+}
