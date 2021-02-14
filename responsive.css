@@ -26,4 +26,16 @@
   btn btn-block btn-secondary {
     width: 20px;
   }
+
+  button#btn-save {
+    width: 325px;
+  }
+
+  button#cancel {
+    width: 325px;
+  }
+
+  .modal-dialog {
+    margin-top: 190px;
+  }
 }

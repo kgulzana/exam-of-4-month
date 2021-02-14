@@ -47,17 +47,23 @@ h3.row__list {
   margin-bottom: 11px;
 }
 
-.btn-secondary {
-  width: 457px;
-  margin: 6px;
-}
-
 h3.listtask {
   color: white;
   margin-left: 34px;
   margin-top: 80px;
   font-size: 21px;
   font-weight: 900;
+}
+
+#btn-save {
+  width: 466px;
+  background-color: #5f81b2;
+  margin-bottom: 13px;
+}
+
+#cancel {
+  width: 467px;
+  background-color: #aeaeae;
 }
 
 /* box styles */
@@ -101,4 +107,24 @@ input.check-done {
   margin-top: -20px;
   width: 36px;
   height: 22px;
+}
+
+/* modalConfirm */
+.dconfirm {
+  background-color: white;
+  width: 315px;
+  margin-left: 376px;
+}
+
+p.text-confirm {
+  font-size: 16px;
+  font-weight: 600;
+  width: 222px;
+  text-align: center;
+  margin-left: 42px;
+  padding-top: 13px;
+}
+#modalDlt {
+  margin: 6px;
+  width: 303px;
 }

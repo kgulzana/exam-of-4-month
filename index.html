@@ -117,6 +117,7 @@
       </header>
       <h3 class="listtask">СПИСОК ЗАДАЧ</h3>
       <div class="taskitems" id="tasks"></div>
+      <div class="dconfirm"></div>
     </div>
 
     <script
@@ -132,6 +133,9 @@
       const taskDiv = document.querySelector("#tasks");
       const modalClose = document.querySelector(".btn-close");
       const modalCancel = document.querySelector("#cancel");
+      const modalConfirm = document.querySelector(".dconfirm");
+
+      let toDoList = [];
 
       modalTask.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -146,7 +150,6 @@
 
         let $task = document.createElement("div");
         $task.classList.add("box");
-        // $task.classList.add("col");
 
         $task.innerHTML = ` <h3 class = "titletask">${_title.value}</h3>
                             <p>${_listTasks}</p>
@@ -160,7 +163,45 @@
 
         taskDiv.prepend($task);
 
-        $delBtn.addEventListener("click", () => {});
+        $delBtn.addEventListener("click", () => {
+          $task.remove();
+        });
+
+        ///////////////////////////////////////////////////////////////////////
+
+        // НЕ получилось удалить задачу с помощью второй модалки хотя ее создала
+
+        $delBtn.addEventListener("click", () => {
+          let newToDo = {
+            todoTitle: _title.value,
+            todoTask: _listTasks.value,
+          };
+
+          toDoList.push(newToDo);
+          displayConfirms();
+          localStorage.setItem("todo", JSON.stringify(toDoList));
+        });
+
+        function displayConfirms() {
+          toDoList.forEach(function (item, i) {
+            let displayconfirm = `<div class="col-6 modalDel">
+                                    <p class="text-confirm">Вы уверены что хотите удалить задачу навсегда?</p>
+                                    <button class="btn btn-danger" id="modalDlt" type="text">Удалить</button>
+                                    <button class="btn btn-secondary" id="modalCanc" type="text">Отменить</button>
+                                  </div>`;
+
+            modalConfirm.innerHTML = displayconfirm;
+          });
+        }
+
+        // const modalDelete = displayconfirm.querySelector("#modalDlt");
+        // const modalCanc = displayconfirm.querySelector("#modalCanc");
+
+        // modalDelete.addEventListener("click", () => {
+        //   $task.remove();
+        // });
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
         $checkBox.addEventListener("click", () => {
           console.log("check");
@@ -172,16 +213,14 @@
             $checkBox.style.textDecoration = "none";
           }
         });
-
-        $delBtn.addEventListener("click", () => {
-          $task.remove();
-        });
       });
 
       modalCancel.addEventListener("click", () => {
         modal.classList.remove("show");
         modal.style.display = "none";
       });
+
+      // Сохранение задач (бонусное необязательное задание). Сохраняйте данные в localStorage, чтобы при обновлении страницы заметки не удалялись
     </script>
   </body>
 </html>
